@@ -3,11 +3,11 @@
 
 def get_number():
     try:
-        float(number := input('Введите число: '))
+        float(number := input('Введите число: ').replace(',', '.'))
         return number
     except ValueError:
         print('Ошибка ввода. Допускается только ввод чисел.', end=' ')
         return get_number()
 
 num = get_number().replace('.', '')
-print(sum([int(i) for i in num]))
+print(sum(int(i) for i in num))
