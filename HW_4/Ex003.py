@@ -3,16 +3,4 @@
 # элементов исходной последовательности.
 
 n = input('Задайте последовательность чисел единой строкой: ')
-dct = {}
-for i in n:
-    if i not in dct:
-        dct[i] = 1
-    else:
-        dct[i] += 1
-
-res = []
-for k, v in dct.items():
-    if v == 1:
-        res.append(k)
-
-print(res)
+print([int(i) for i in n.split() if n.count(i) == 1])

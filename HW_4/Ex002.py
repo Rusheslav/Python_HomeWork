@@ -6,7 +6,7 @@ def is_simple(num: int) -> bool:
         return True
     if not num % 2 or not num % 3 or not num % 5 or num == 1:
         return False
-    for i in range(7, int(num/7), 2):
+    for i in range(7, num//7, 2):
         if not num % i:
             return False
     return True
