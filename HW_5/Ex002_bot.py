@@ -36,12 +36,12 @@ while bank:
                       f'Попробуйте ещё раз: ')
 
     else:
-        if bank <= 28:
+        if bank <= limit:
             n = bank
         elif bank % (limit + 1):
             n = bank % (limit + 1)
         else:
-            n = randint(1, 28)
+            n = randint(1, limit)
         print(f'Ход бота: {n}')
 
     bank -= int(n)
