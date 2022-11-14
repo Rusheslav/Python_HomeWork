@@ -23,10 +23,9 @@ def get_contact() -> dict:
         else:
             phones += f';{reply}'
     columns = [name, surname, birthdate, employer, phones]
-    columns_str = ['name', 'surname', 'birthdate', 'employer', 'phones']
     contact = {}
     for i in range(len(columns)):
-        contact[columns_str[i]] = columns[i] if columns[i] else '-'
+        contact[model.column_names[i]] = columns[i] if columns[i] else '-'
     return contact
 
 
@@ -85,7 +84,7 @@ def run() -> None:
                 if phonebook:
                     contact_id = get_contact_id()
                     contact = model.find_contact(contact_id)
-                    if type(contact) == 'str':
+                    if type(contact) == str:
                         view.print_result(contact)
                         logger.make_record(f'Поиск контакта по id. Контакт с id {contact_id} не найден.')
                     else:

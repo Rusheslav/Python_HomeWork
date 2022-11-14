@@ -1,5 +1,7 @@
 import csv
 
+column_names = ['name', 'surname', 'birthdate', 'employer', 'phones']
+
 
 def get_phonebook() -> list:
     try:
@@ -30,13 +32,12 @@ def find_contact(contact_id: str) -> str or dict:
     with open('contacts.csv', 'r', encoding='UTF8') as f:
         rows = list(csv.reader(f))
         if len(rows) < int(contact_id):
-            return f'Контакт с id {contact_id} не найден.'
+            return f'Контакт с id {contact_id} не найден'
         contact = {}
         for row in rows:
-            columns_str = ['name', 'surname', 'birthdate', 'employer', 'phones']
             if row[0] == contact_id:
-                for i in range(1, len(row)):
-                    contact[columns_str[i - 1]] = row[i]
+                for i in range(len(column_names)):
+                    contact[column_names[i]] = row[i + 1]
                 break
         return contact
 
@@ -47,10 +48,9 @@ def delete_contact(contact_id: str) -> str:
         contacts = []
         for row in rows:
             contact = {}
-            columns_str = ['name', 'surname', 'birthdate', 'employer', 'phones']
             if row[0] != contact_id:
-                for i in range(1, len(row)):
-                    contact[columns_str[i-1]] = row[i]
+                for i in range(len(column_names)):
+                    contact[column_names[i]] = row[i + 1]
                 contacts.append(contact)
             else:
                 name = row[1]
@@ -72,9 +72,8 @@ def upload_contacts(file_name: str) -> str:
             for row in rows:
                 if len(row) == 5 and row[0] and row[4]:
                     contact = {}
-                    columns_str = ['name', 'surname', 'birthdate', 'employer', 'phones']
                     for i in range(len(row)):
-                        contact[columns_str[i]] = row[i]
+                        contact[column_names[i]] = row[i]
                     add_contact(contact)
                     count += 1
             if count == len(rows):
