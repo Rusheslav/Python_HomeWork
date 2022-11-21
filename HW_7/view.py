@@ -29,5 +29,5 @@ def show_contact(contact: list) -> None:
     print(tabulate(table, tablefmt='fancy_grid'))
 
 
-def print_result(result:str) -> None:
-    print(f'\n~~{result}~~')
+def print_result(result: str) -> None:
+    print(f'\n~~ {result} ~~')
